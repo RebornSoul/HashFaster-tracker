@@ -28,6 +28,7 @@
     [super viewDidLoad];
     UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(didPressQRCodeButton:)];
     [self.navigationItem setRightBarButtonItem:buttonItem];
+    [self.navigationItem setTitle:@"Your pools"];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -57,10 +58,12 @@
         NSMutableArray *components = [[scanResult componentsSeparatedByString:@"|"] mutableCopy];
         [components removeLastObject];
         [components removeObjectAtIndex:0];
+        NSDictionary *infoParams = [self paramsFromQRArray:components];
+        PoolItem *foundItem = [[PoolItem findAllWithPredicate:[NSPredicate predicateWithFormat:@"url == %@", [infoParams valueForKey:@"url"]]] firstObject];
         if ([self validateQRCodeArray:components]) {
-            PoolItem *item = [PoolItem createEntity];
-            [item setAddedDate:[NSDate date]];
-            [item setValuesForKeysWithDictionary:[self paramsFromQRArray:components]];
+            if (!foundItem) foundItem = [PoolItem createEntity];
+            [foundItem setAddedDate:[NSDate date]];
+            [foundItem setValuesForKeysWithDictionary:infoParams];
         }
         if (error) {
             NSLog(@"Failed to initialize a player: %@", error.localizedDescription);
@@ -127,6 +130,21 @@
 }
 
 #pragma mark - UITableView dataSource & delegate
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //add code here for when you hit delete
+        PoolItem *item = [self.dataArray objectAtIndex:indexPath.row];
+        [item deleteEntity];
+        [self refreshLocalData];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     PoolItem *item = [self.dataArray objectAtIndex:indexPath.row];
