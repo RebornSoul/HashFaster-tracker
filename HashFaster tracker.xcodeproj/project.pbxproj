@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		71431EC518A3829500167CC8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71431EC418A3829500167CC8 /* QuartzCore.framework */; };
 		7189E32C18A2875B00F58111 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7189E32B18A2875B00F58111 /* AVFoundation.framework */; };
 		7189E33118A2885C00F58111 /* NSString+filePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 7189E33018A2885C00F58111 /* NSString+filePath.m */; };
 		7189E33518A2906900F58111 /* cash-register.aac in Resources */ = {isa = PBXBuildFile; fileRef = 7189E33418A2906900F58111 /* cash-register.aac */; };
@@ -49,6 +50,7 @@
 /* Begin PBXFileReference section */
 		0E1604E1A4C34AE191F1E26B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		274C503C25614EB1865EC869 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		71431EC418A3829500167CC8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7189E32B18A2875B00F58111 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		7189E32F18A2885C00F58111 /* NSString+filePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+filePath.h"; sourceTree = "<group>"; };
 		7189E33018A2885C00F58111 /* NSString+filePath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+filePath.m"; sourceTree = "<group>"; };
@@ -93,10 +95,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71431EC518A3829500167CC8 /* QuartzCore.framework in Frameworks */,
+				71F1D87018A27A89001C64F7 /* CoreGraphics.framework in Frameworks */,
 				7189E33918A294BC00F58111 /* Security.framework in Frameworks */,
 				7189E33718A290AB00F58111 /* CoreData.framework in Frameworks */,
 				7189E32C18A2875B00F58111 /* AVFoundation.framework in Frameworks */,
-				71F1D87018A27A89001C64F7 /* CoreGraphics.framework in Frameworks */,
 				71F1D87218A27A89001C64F7 /* UIKit.framework in Frameworks */,
 				71F1D86E18A27A89001C64F7 /* Foundation.framework in Frameworks */,
 				A3F2A63ECA1444F5B18D581C /* libPods.a in Frameworks */,
@@ -162,6 +165,7 @@
 		71F1D86C18A27A89001C64F7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				71431EC418A3829500167CC8 /* QuartzCore.framework */,
 				7189E33818A294BC00F58111 /* Security.framework */,
 				7189E33618A290AB00F58111 /* CoreData.framework */,
 				7189E32B18A2875B00F58111 /* AVFoundation.framework */,

@@ -13,6 +13,7 @@
 #import "PoolItem.h"
 #import <MagicalRecord/CoreData+MagicalRecord.h>
 #import "SCDashboardVC.h"
+#import <CoreGraphics/CoreGraphics.h>
 
 @interface SCViewController ()
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
@@ -67,7 +68,19 @@
             [self.player play];
         }
     }];
-    [self presentViewController:navC animated:YES completion:nil];
+    [self presentViewController:navC animated:YES completion:^{
+        UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismissQRCodePicker:)];
+        [scanVC.navigationItem setLeftBarButtonItem:cancel];
+        UIColor *color = [UIColor cyanColor];
+        UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectInset(scanVC.view.bounds, -40.0f, -40.0f) cornerRadius:20.0f];
+        [color setStroke];
+        bezierPath.lineWidth = 2.0f;
+        [bezierPath stroke];
+    }];
+}
+
+- (void)dismissQRCodePicker:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void) refreshLocalData {
@@ -133,6 +146,7 @@
     NSURL *apiURL = [NSURL URLWithString:item.url];
     [cell.textLabel setText:apiURL.host];
     [cell.detailTextLabel setText:item.apiKey];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
 
