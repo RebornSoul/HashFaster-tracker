@@ -29,6 +29,7 @@
     UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(didPressQRCodeButton:)];
     [self.navigationItem setRightBarButtonItem:buttonItem];
     [self.navigationItem setTitle:@"Your pools"];
+    [self refreshLocalData];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -36,6 +37,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
 }
 
 - (IBAction)didPressQRCodeButton:(id)sender {
